@@ -23,10 +23,6 @@ namespace GmailAuthorization
             webDriver.FindElement(_continueWithPasswordButton).Click();
         }
         public string ReadPasswordValidationMessage() => webDriver.FindElement(_invalidPasswordValidationMessage).Text;
-        //{
-        //    string actualInvalidPasswordValidationMessage = webDriver.FindElement(_invalidPasswordValidationMessage).Text;
-        //    return actualInvalidPasswordValidationMessage;
-        //}
         public string ReadExpectedInvalidPasswordValiationMessage() => _expectedInvalidPasswordValiationMessage;
         
     }

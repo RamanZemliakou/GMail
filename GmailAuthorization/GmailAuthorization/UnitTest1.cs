@@ -19,7 +19,7 @@ namespace GmailAuthorization
 
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("--safebrowsing-enable-enhanced-protection");
-            //options.AddArgument("--disable-web-security");
+            options.AddArgument("--disable-web-security");
             options.AddArgument("--allow-running-insecure-content");
             options.AddArgument("--disable-blink-features=AutomationControlled");
             options.AddUserProfilePreference("safebrowsing.enabled", "true");
@@ -27,16 +27,12 @@ namespace GmailAuthorization
             options.AddAdditionalCapability("useAutomationExtension", "false");
 
             options.AddArguments("--disable-web-security", "--disable-gpu", "--proxy-bypass-list=*", "--proxy-server='direct://'", "--log-level=3", "--hide-scrollbars", "--lang=en-us");
-            //options.AddArgument(@"user-data-dir=c:\Users\Raman.Zemliakou\AppData\Local\Google\Chrome\User Data\Default");
-
-            //webDriver = UndetectedChromeDriver.Create(options);
+            
             webDriver = new ChromeDriver(options);
             webDriver.Manage().Cookies.DeleteAllCookies();
             webDriver.Manage().Window.Maximize();
             webDriver.Navigate().GoToUrl(Url);
             IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
-            
-            //webDriver = new FirefoxDriver();
         }
 
         [Test]
