@@ -36,7 +36,6 @@ namespace GmailAuthorization
             wait.Until(ExpectedConditions.ElementToBeClickable(_repeatAttemptButton));
             if (webDriver.FindElements(_repeatAttemptButton).Count > 0)
             {
-                
                 webDriver.FindElement(_repeatAttemptButton).Click();
             }
         }

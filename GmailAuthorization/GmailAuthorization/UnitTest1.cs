@@ -30,9 +30,11 @@ namespace GmailAuthorization
             //options.AddArguments("--disable-web-security", "--disable-gpu", "--proxy-bypass-list=*", "--proxy-server='direct://'", "--log-level=3", "--hide-scrollbars", "--lang=en-us");
             
             webDriver = new ChromeDriver(options);
+            var userInfo = new UserInfo();
             webDriver.Manage().Cookies.DeleteAllCookies();
             webDriver.Manage().Window.Maximize();
-            webDriver.Navigate().GoToUrl(Url);
+            webDriver.Navigate().GoToUrl(userInfo.StackOverflowUrl);
+            //webDriver.Navigate().GoToUrl(Url);
             IJavaScriptExecutor executor = (IJavaScriptExecutor)webDriver;
         }
 
@@ -40,13 +42,17 @@ namespace GmailAuthorization
         public void Test1()
         {
             var passwordCheck = new ProvidePassword(webDriver);
+            var stackOverflowPrecondition = new StackOverflowSignUpPage(webDriver);
+            stackOverflowPrecondition.NavigateToSignUp();
+            stackOverflowPrecondition.SignUpWithGoogle();
             passwordCheck.EnterEmail();
-            passwordCheck.RepeatLoginAttempt();
-            passwordCheck.EnterEmail();
-            passwordCheck.ProvideInvalidPassword();
-            var actualMessage = passwordCheck.ReadPasswordValidationMessage();
-            var expectedMessage = passwordCheck.ReadExpectedInvalidPasswordValiationMessage();
-            Assert.AreEqual(expectedMessage, actualMessage);
+            //passwordCheck.EnterEmail();
+            //passwordCheck.RepeatLoginAttempt();
+            //passwordCheck.EnterEmail();
+            //passwordCheck.ProvideInvalidPassword();
+            //var actualMessage = passwordCheck.ReadPasswordValidationMessage();
+            //var expectedMessage = passwordCheck.ReadExpectedInvalidPasswordValiationMessage();
+            //Assert.AreEqual(expectedMessage, actualMessage);
         }
     }
 }
